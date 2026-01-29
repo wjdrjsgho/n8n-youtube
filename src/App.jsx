@@ -9,16 +9,11 @@ function App() {
   const [selectedTitle, setSelectedTitle] = useState('');
 
   const handleSelectFile = async (file) => {
-    if (!file.download_url) return;
-
-    // Set title immediately for better UX
-    setSelectedTitle(file.name.replace('.md', '').replaceAll('-', ' '));
-
-    const content = await getSummaryContent(file.download_url);
-    if (content) {
-      setMarkdown(content);
-      setView('map');
-    }
+    // In GitHub mode, 'file' is object { name, path, ... }
+    const content = await getSummaryContent(file.path);
+    setSelectedTitle(file.name.replace('.md', ''));
+    setMarkdown(content);
+    setView('map');
   };
 
   const handleBack = () => {

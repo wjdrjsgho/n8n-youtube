@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.93.3",
+    "axios": "^1.13.4",
+    "dotenv": "^17.2.3",
     "markmap-common": "^0.18.9",
     "markmap-lib": "^0.18.12",
     "markmap-toolbar": "^0.18.12",
     "markmap-view": "^0.18.12",
+    "node-fetch": "^3.3.2",
     "octokit": "^5.0.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

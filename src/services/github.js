@@ -37,13 +37,23 @@ export const getSummaries = async () => {
     }
 };
 
-export const getSummaryContent = async (url) => {
+export const getSummaryContent = async (path) => {
     try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Failed to fetch content');
-        return await response.text();
+        // If path is a full URL, we might need to extract the relative path or just use the path provided
+        // We assume 'path' is the relative path in the repo (e.g., "summaries/foo.md")
+
+        const response = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+            owner: OWNER,
+            repo: REPO,
+            path: path,
+            mediaType: {
+                format: "raw",
+            },
+        });
+
+        return response.data;
     } catch (error) {
         console.error('Error fetching file content:', error);
-        return '# Error\nCould not load file.';
+        return '# Error\nCould not load file. Ensure the GitHub Token is valid and has repo access.';
     }
 };

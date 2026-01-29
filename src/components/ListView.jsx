@@ -40,7 +40,7 @@ const ListView = ({ onSelectFile }) => {
             ) : files.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '100px', background: 'rgba(255,255,255,0.02)', borderRadius: '20px' }}>
                     <p style={{ fontSize: '1.2rem', color: '#888', marginBottom: '20px' }}>No summaries found in the repository.</p>
-                    <p style={{ fontSize: '0.9rem', color: '#555' }}>Make sure your n8n workflow is pushing .md files to the 'summaries' folder.</p>
+                    <p style={{ fontSize: '0.9rem', color: '#555' }}>Make sure you have `.md` files in the `summaries/` folder.</p>
                 </div>
             ) : (
                 <div style={{
@@ -48,10 +48,10 @@ const ListView = ({ onSelectFile }) => {
                     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                     gap: '20px'
                 }}>
-                    {files.map(file => (
+                    {files.map(item => (
                         <div
-                            key={file.sha}
-                            onClick={() => onSelectFile(file)}
+                            key={item.id}
+                            onClick={() => onSelectFile(item)}
                             style={{
                                 background: 'rgba(255, 255, 255, 0.05)',
                                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -74,10 +74,10 @@ const ListView = ({ onSelectFile }) => {
                             }}
                         >
                             <div style={{ color: '#ff4b4b', fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '12px', textTransform: 'uppercase' }}>
-                                Summary
+                                MARKDOWN
                             </div>
                             <h3 style={{ margin: 0, fontSize: '1.2rem', lineHeight: '1.4', color: '#eee' }}>
-                                {file.name.replace('.md', '').replaceAll('-', ' ')}
+                                {item.name.replace('.md', '')}
                             </h3>
                             <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', color: '#666', fontSize: '0.85rem' }}>
                                 <span>View MindMap</span>
